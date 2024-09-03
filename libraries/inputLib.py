@@ -11,14 +11,15 @@ def getUserInput(prompt: str) -> str:
 
 # Gets initial input and checks it
 def initalOptionSelection(): 
-    response = getUserInput("Enter your option:").lower() 
+    response = getUserInput("Enter your option: ").lower() 
     if len(response) != 1:
         raise ValueError("Expected R or D as inputs, got improper length")
-    if response == 'r':
-        return "r"
-    elif response == 'd':
-        return "d"
+    if response == 'r' or response == 'd':
+        return response
     else:
         raise ValueError("Expected R or D as inputs, got something else")
 
+def ingredientInputSelection():
+    response = getUserInput("Enter your options: ").lower()
+    
 

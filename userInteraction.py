@@ -13,7 +13,9 @@ def main():
     # Check what which option to do
     match option:
         case 'r':
-            pass
+            outputLib.ingredientUsageOptions() #print options
+            ingredientOption = inputLib.ingredientInputSelection()
+
         case 'd':
             pass
         case _:

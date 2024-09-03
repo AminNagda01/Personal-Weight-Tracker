@@ -90,6 +90,9 @@ If user selects ingredient/food ('r'), display usage info and prompt for next in
 
 Then go through and acutaully do the api part of it 
 
+Note: most error correction should be on the app layer, once we want to request info 
+for any other errs, like bad commands, those can be raised normally 
+
 
 
 
