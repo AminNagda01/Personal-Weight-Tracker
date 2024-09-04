@@ -1,4 +1,12 @@
-High Level Desired Features: 
+# Plan 1: Due 9/7 - Implement the Ingredients database, and a command line interface to get the information  
+So testing, data validation, database, documentation should all be done 
+
+
+## TODO: 
+# Add "b" command everywhere except the r and d input so that use can go back a menu 
+# Add API calls for the ingredients option 
+
+### High Level Desired Features: 
 a) input food in 5 categories: Breakfast, Lunch, Dinner, Drinks, Intermediate (Snaks or small meals) 
 b) Input an ingredient or food with calories. 
 	I should be able to look up past dishes and ingredients for faster input 
@@ -11,6 +19,7 @@ d) Set goals that are assignable per day of a week. Each sunday, set calorie goa
 e) Be able to download a report for any X amount of pass days, where we can see what days i went over 
 f) email the results or email if too many days go by without input 
 
+### Some requirements: 
 The user shall be able to select type of meal (breakfast, dinner, etc)
 The user shall be able to add ingredients to a database, with a caloric number added to it
 The user should be able to use food in the database to add to the selected meal type. 
@@ -23,7 +32,7 @@ The user shall be able to download a report of the past
 Program can be hosted at all times through a server and docker
 Program input of info is done through command line interface 
 
-Constraints: 
+### Constraints: 
 Flask, Python, SQL or Postgresql, Docker and Docker Compose
 	Why?
 		Flask and Python to better learn them. Sql to store the data, and docker to run it anywhere. Essentailly
@@ -32,7 +41,7 @@ Python will make the app, flask will handle requests. We can use marshmallow and
 have blueprints to manage it. Docker will allow us to run it on any server of our choosing. Postgresql will store two tables, 
 one by day for eating history, and another for the food and calories per food 
 
-API Design: 
+### API Design: 
 
 Ingredients/Foods: POST will make new ingredient or food with calories and serving size. PUT will update that ingredient
 DELETE will remove it. GET will return the ingredient. GET will also get ALL ingredients
@@ -44,7 +53,7 @@ Every year, the program will add another year of spaces to the storage for days
 Only accept strings for names of food, ints for date, and ints for serving size (with a string for the unit of mesurement) 
 Only return a string or int for what is requested 
 
-Testing: - Maybe use Cypress? Find a automatic testing tool 
+### Testing: - Maybe use Cypress? Find a automatic testing tool 
 User starts program and can choose to do one of the many api requests 
 Foods: 
 	POST - User should only be able to enter a string name, int calorie amount, int serving size, and string unit 
@@ -55,7 +64,7 @@ Foods:
 Days:
 	POST - 
 
-Database design:
+### Database design:
 The days should be the "main" database. They will be the primary key, with ingredients/food (many) being foreign keys. One-to-many relationship, as
 one day can have many ingredients. All the day needs for itself is the date, and the api will, on any get, calculate the calories before output
 to speed it up, day 1 could be indexed at 0, and so on, so that we can make some math to call it, rather than going through and checking each date
@@ -64,7 +73,7 @@ the food db should be independent. so each item in there is independent. These w
 ids on this one 
 
 
-Design approach: 
+### Design approach: 
 Using a layered design. 
 Input and output libraries will be called by an intemediary file that will handle sending data to api file, and printing output 
 the api file will interact with the database, and send data back to the intemediary file 
@@ -73,29 +82,8 @@ Cons: May increase size, which is unneeded on such a small project, may be too c
 
 But i dont want direct design because it will be harder to grow if needed 
 
-
-Plan 1: Due 9/7 - Implement the Ingredients database, and a command line interface to get the information  
-So testing, data validation, database, documentation should all be done 
-
-Step 1) Create file to allow for user input 
-Step 2) Create apis with proper documentation and validation 
-Step 3) Save inputs and rest information to a database 
-Step 4) idk lole 
-
-
-TODO: 
-If user selects ingredient/food ('r'), display usage info and prompt for next instruction 
-	(such as -gs would get all, -g <NAME> gets one, -p <NAME> <AMOUNT> <UNIT> will add a new one (make sure to display what units are allowed), 
-	-u <NAME TO UPDATE> <NEW SIZE> <NEW UNIT> (note if size cannot be blank, if unit is blank use old unit))
-
-Then go through and acutaully do the api part of it 
-
 Note: most error correction should be on the app layer, once we want to request info 
 for any other errs, like bad commands, those can be raised normally 
-
-
-
-
 
 
 
