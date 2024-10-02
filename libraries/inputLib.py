@@ -42,6 +42,7 @@ def ingredientInputSelection():
         elif len(response) < MIN_INGREDIENT_COMMAND_LEN:
             print("Invalid agrument, please use flags provided")
         
+        # case of "-g <ingredient>"
         elif len(response.split()) == 2:
             if len(response) > MAX_INGREDIENT_LENGTH_COMMAND:
                 print("Ingredient has too many characters")

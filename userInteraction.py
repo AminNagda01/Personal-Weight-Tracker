@@ -14,8 +14,8 @@ def main():
             outputLib.ingredientUsageOptions() #print options
             ingredientOption = inputLib.ingredientInputSelection()
 
-            # Get <Ingredient>
-            if len(ingredientOption) > 2:
+            # Get <Ingredient> 
+            if len(ingredientOption.split()) > 2: # if we have more than 2 parts to this string (ie. -g <ingredient>)
                 parts = ingredientOption.split()
                 if len(parts) == 2:
                     pass # TODO: Send parts[1] to the api to get that ingredient, handle errors
